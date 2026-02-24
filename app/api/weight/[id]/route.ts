@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import connectDB from '@/app/lib/mongodb';
 import Weight from '@/app/models/Weight';
+import { authOptions } from '@/app/lib/auth';
 
 export async function DELETE(
   request: Request,
@@ -9,7 +10,7 @@ export async function DELETE(
 ) {
   try {
     const weightId = params.id;
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
       return NextResponse.json(

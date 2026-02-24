@@ -2,10 +2,11 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import connectDB from '@/app/lib/mongodb';
 import Weight from '@/app/models/Weight';
+import { authOptions } from '@/app/lib/auth';
 
 export async function GET() {
     try {
-        const session = await getServerSession();
+        const session = await getServerSession(authOptions);
 
         if (!session?.user?.id) {
             return NextResponse.json(
@@ -31,7 +32,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
     try {
-        const session = await getServerSession();
+        const session = await getServerSession(authOptions);
 
         if (!session?.user?.id) {
             return NextResponse.json(
