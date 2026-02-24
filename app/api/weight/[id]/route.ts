@@ -7,8 +7,8 @@ export async function DELETE(
   request: Request,
   { params }: { params: { id: string } }
 ) {
-  const weightId = params.id;
   try {
+    const weightId = params.id;
     const session = await getServerSession();
 
     if (!session?.user?.id) {
@@ -41,6 +41,11 @@ export async function DELETE(
     return NextResponse.json(
       { message: 'Entry deleted' },
       { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Something went wrong' },
+      { status: 500 }
     );
   }
 }
