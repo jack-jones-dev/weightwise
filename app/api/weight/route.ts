@@ -40,7 +40,7 @@ export async function POST(request: Request) {
             );
         }
 
-        const { weight, bodyFat, date } = await request.json();
+        const { weight, bodyFatPercentage, date } = await request.json();
 
         if (!weight) {
             return NextResponse.json(
@@ -54,7 +54,7 @@ export async function POST(request: Request) {
         const entry = await Weight.create({
             userId: session.user.id,
             weight,
-            bodyFat,
+            bodyFatPercentage,
             date: date || Date.now(),
         });
 
