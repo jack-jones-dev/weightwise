@@ -22,6 +22,15 @@ export default async function Dashboard() {
         .sort({ date: -1 })
         .lean<WeightEntry[]>();
 
+    const plainEntries = entries.map(entry => ({
+        ...entry,
+        _id: entry._id.toString(),
+        userId: entry.userId.toString(),
+        date: entry.date.toString(),
+        createdAt: entry.createdAt?.toString(),
+        updatedAt: entry.updatedAt?.toString(),
+    }));
+
     const user = await User.findById(session.user.id).lean();
 
     return (
@@ -37,9 +46,9 @@ export default async function Dashboard() {
                 </div>
             </div>
 
-            <WeightChart entries={entries} />
+            <WeightChart entries={plainEntries} />
             <WeightForm />
-            <WeightList entries={entries} />
+            <WeightList entries={plainEntries} />
         </main>
     );
 }

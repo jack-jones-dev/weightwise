@@ -4,6 +4,8 @@ export interface WeightEntry {
     bodyFatPercentage?: number;
     date: string;
     userId: string;
+    createdAt?: string;
+    updatedAt?: string;
 }
 
 export interface User {
