@@ -8,6 +8,7 @@ import WeightForm from '@/app/components/WeightForm';
 import WeightChart from '@/app/components/WeightChart';
 import WeightList from '@/app/components/WeightList';
 import { authOptions } from '../lib/auth';
+import LogoutButton from '@/app/components/LogoutButton';
 
 export default async function Dashboard() {
     const session = await getServerSession(authOptions);
@@ -44,6 +45,7 @@ export default async function Dashboard() {
                         </p>
                     )}
                 </div>
+                <LogoutButton />
             </div>
 
             <WeightChart entries={plainEntries} />
