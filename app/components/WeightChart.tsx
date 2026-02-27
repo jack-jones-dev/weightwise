@@ -9,12 +9,15 @@ import {
     Tooltip,
     ResponsiveContainer,
 } from 'recharts';
+import { useState } from 'react';
+import Button from './Button';
 
 interface WeightChartProps {
     entries: WeightEntry[];
 }
 
 export default function WeightChart({ entries }: WeightChartProps) {
+    const [showBodyFat, setShowBodyFat] = useState(true);
     const data = entries
         .slice()
         .reverse()
@@ -36,13 +39,31 @@ export default function WeightChart({ entries }: WeightChartProps) {
     return (
         <div className="bg-white rounded-lg p-6 shadow mb-8">
             <h2 className="text-black text-2xl font-bold mb-4">Weight Progress</h2>
-            <ResponsiveContainer width="100%" height={300}>
+            <Button onClick={() => setShowBodyFat(!showBodyFat)}>
+                {showBodyFat ? 'Hide Body Fat %' : 'Show Body Fat %'}
+            </Button>
+            <ResponsiveContainer width="100%" height={300} className="mt-4">
                 <LineChart data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="date" />
                     <YAxis yAxisId="weight" />
-                    <YAxis yAxisId="bodyFat" orientation="right" />
-                    <Tooltip />
+                    {showBodyFat && (<YAxis yAxisId="bodyFat" orientation="right" />)}
+                    <Tooltip
+                        contentStyle={{
+                            backgroundColor: 'white',
+                            border: '1px solid #e5e7eb',
+                            borderRadius: '8px',
+                        }}
+                        labelStyle={{
+                            color: '#111827',
+                            marginBottom: '4px',
+                        }}
+                        formatter={(value, name) => {
+                            if (name === 'weight') return [`${value} lbs`, 'Weight'];
+                            if (name === 'bodyFatPercentage') return [`${value}%`, 'Body Fat'];
+                            return [value, name];
+                        }}
+                    />
                     <Line
                         yAxisId="weight"
                         type="monotone"
@@ -51,14 +72,16 @@ export default function WeightChart({ entries }: WeightChartProps) {
                         strokeWidth={2}
                         dot={true}
                     />
-                    <Line
-                        yAxisId="bodyFatPercentage"
-                        type="monotone"
-                        dataKey="bodyFatPercentage"
-                        stroke="#10B981"
-                        strokeWidth={2}
-                        dot={true}
-                    />
+                    {showBodyFat && (
+                        <Line
+                            yAxisId="bodyFat"
+                            type="monotone"
+                            dataKey="bodyFatPercentage"
+                            stroke="#10B981"
+                            strokeWidth={2}
+                            dot={true}
+                        />
+                    )}
                 </LineChart>
             </ResponsiveContainer>
         </div>
