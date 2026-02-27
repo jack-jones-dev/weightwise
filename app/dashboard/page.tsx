@@ -68,6 +68,6 @@ export default async function Dashboard() {
             <WeightChart entries={plainEntries} preferredUnits={plainUser.preferredUnits} />
             <WeightForm />
             <WeightList entries={plainEntries} preferredUnits={plainUser.preferredUnits} />
-        </main>
+        </main >
     );
 }
