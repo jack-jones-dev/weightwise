@@ -3,7 +3,7 @@ interface ButtonProps {
     onClick?: () => void;
     type?: 'button' | 'submit' | 'reset';
     disabled?: boolean;
-    variant?: 'primary' | 'secondary';
+    variant?: 'primary' | 'secondary' | 'delete';
 }
 
 export default function Button({
@@ -16,6 +16,7 @@ export default function Button({
     const styles = {
         primary: 'bg-blue-500 text-white hover:bg-blue-600',
         secondary: 'bg-gray-200 text-gray-800 hover:bg-gray-300',
+        delete: 'bg-red-500 text-white hover:bg-red-600',
     }
 
     return (

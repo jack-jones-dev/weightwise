@@ -58,7 +58,7 @@ export default function WeightList({ entries }: WeightListProps) {
                                 </p>
                             </div>
                             <Button
-                                variant="secondary"
+                                variant="delete"
                                 onClick={() => handleDelete(entry._id)}
                                 disabled={loading}
                             >
