@@ -39,8 +39,15 @@ export default function GoalProgress({ user, entries }: GoalProgressProps) {
     return (
         <div className="bg-white rounded-lg p-6 shadow mb-8">
             <h2 className="text-black text-2xl font-bold mb-4">Goal Progress</h2>
-            <div className="width">
-
+            <div className="flex items-center mb-4">
+                <p className="text-gray-500 text-sm px-2">{startWeight}</p>
+                <div className="w-full bg-gray-200 h-4 rounded-full">
+                    <div
+                        className="h-full bg-blue-500 rounded-full"
+                        style={{ width: `${goalProgress}%` }}
+                    ></div>
+                </div>
+                <p className="text-gray-500 text-sm px-2">{user.goalWeight}</p>
             </div>
         </div>
     )
