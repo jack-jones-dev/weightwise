@@ -15,7 +15,7 @@ export default function GoalProgress({ user, entries }: GoalProgressProps) {
             </div>
         );
     }
-    if (!entries) {
+    if (entries.length === 0) {
         return (
             <div className="bg-white rounded-lg p-6 shadow mb-8">
                 <h2 className="text-black text-2xl font-bold mb-4">Goal Progress</h2>
@@ -23,15 +23,15 @@ export default function GoalProgress({ user, entries }: GoalProgressProps) {
             </div>
         );
     }
-    const startWeight = entries[0].weight;
-    const currentWeight = entries[entries.length - 1].weight;
+    const startWeight = entries[entries.length - 1].weight;
+    const currentWeight = entries[0].weight;
     const goalProgress = Math.abs(((startWeight - currentWeight) / (startWeight - user.goalWeight)) * 100);
 
     if (goalProgress > 99) {
         return (
             <div className="bg-white rounded-lg p-6 shadow mb-8">
                 <h2 className="text-black text-2xl font-bold mb-4">Goal Progress</h2>
-                <p className="text-gray-500">Goal Completed!</p>
+                <p className="text-gray-500">Goal Completed! 🎉</p>
             </div>
         )
     }
@@ -39,15 +39,16 @@ export default function GoalProgress({ user, entries }: GoalProgressProps) {
     return (
         <div className="bg-white rounded-lg p-6 shadow mb-8">
             <h2 className="text-black text-2xl font-bold mb-4">Goal Progress</h2>
+            <p className="text-black text-center text-sm pb-2">Current Weight: {currentWeight}lbs</p>
             <div className="flex items-center mb-4">
-                <p className="text-gray-500 text-sm px-2">{startWeight}</p>
+                <p className="text-black text-sm px-2">{startWeight}lbs</p>
                 <div className="w-full bg-gray-200 h-4 rounded-full">
                     <div
                         className="h-full bg-blue-500 rounded-full"
                         style={{ width: `${goalProgress}%` }}
                     ></div>
                 </div>
-                <p className="text-gray-500 text-sm px-2">{user.goalWeight}</p>
+                <p className="text-black text-sm px-2">{user.goalWeight}lbs</p>
             </div>
         </div>
     )
