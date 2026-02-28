@@ -15,3 +15,4 @@ export interface User {
     goalWeight?: number;
     preferredUnits: 'lbs' | 'kg';
 }
+

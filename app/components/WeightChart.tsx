@@ -19,7 +19,7 @@ interface WeightChartProps {
 export default function WeightChart({ entries }: WeightChartProps) {
     const [showBodyFat, setShowBodyFat] = useState(true);
     const data = entries
-        .slice()
+        .slice() //Don't need this but good practice
         .reverse()
         .map(entry => ({
             date: new Date(entry.date).toLocaleDateString(),
