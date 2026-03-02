@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/lib/auth';
 import connectDB from '@/app/lib/mongodb';
 import Weight from '@/app/models/Weight';
-import { authOptions } from '@/app/lib/auth';
 
 export async function GET() {
     try {
