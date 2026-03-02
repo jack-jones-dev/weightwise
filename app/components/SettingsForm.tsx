@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Input from './Input';
 import Button from './Button';
+import Select from './Select';
 import { User } from '../types'
 
 interface SettingsFormProps {
@@ -13,14 +14,13 @@ export default function SettingsForm({ user }: SettingsFormProps) {
     const router = useRouter();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [goalWeight, setGoalWeight] = useState(user.goalWeight || '');
+    const [preferredUnits, setPreferredUnits] = useState(user.preferredUnits || 'lbs');
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setLoading(true);
         setError('');
-        const formData = new FormData(e.currentTarget);
-        const goalWeight = formData.get('goalWeight') as string;
-        const preferredUnits = formData.get('preferredUnits') as string;
 
         const response = await fetch('/api/user', {
             method: 'PUT',
@@ -36,8 +36,8 @@ export default function SettingsForm({ user }: SettingsFormProps) {
             return;
         }
 
-        router.refresh();
         setLoading(false);
+        router.push('/dashboard');
     }
 
     return (
@@ -51,10 +51,24 @@ export default function SettingsForm({ user }: SettingsFormProps) {
             )}
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-
-
-
-
+                <Input
+                    label="Goal Weight"
+                    name="goalWeight"
+                    type="number"
+                    value={goalWeight}
+                    onChange={e => setGoalWeight(e.target.value)}
+                />
+                <Select
+                    label="Preferred Units"
+                    value={preferredUnits}
+                    onChange={e => setPreferredUnits(e.target.value as 'lbs' | 'kg')}
+                >
+                    <option value="lbs">lbs</option>
+                    <option value="kg">kg</option>
+                </Select>
+                <Button type="submit" disabled={loading} variant="primary">
+                    {loading ? 'Updating settings...' : 'Update Settings'}
+                </Button>
             </form>
         </div>
     );
