@@ -23,7 +23,7 @@ export default function GoalProgress({ user, entries }: GoalProgressProps) {
             </div>
         );
     }
-    const startWeight = entries[entries.length - 1].weight;
+    const startWeight = user.goalStartWeight || entries[entries.length - 1].weight;
     const currentWeight = entries[0].weight;
     const remaining = Math.abs(currentWeight - user.goalWeight);
     const goalProgress = Math.max(

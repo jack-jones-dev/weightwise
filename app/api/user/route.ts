@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/lib/auth';
 import connectDB from '@/app/lib/mongodb';
 import User from '@/app/models/User';
+import Weight from '@/app/models/Weight';
 
 export async function PUT(request: Request) {
     try {
@@ -19,9 +20,17 @@ export async function PUT(request: Request) {
 
         await connectDB();
 
+        const latestEntry = await Weight.findOne({ userId: session.user.id })
+            .sort({ date: -1 });
+
         const user = await User.findByIdAndUpdate(
             session.user.id,
-            { goalWeight, preferredUnits },
+            {
+                goalWeight,
+                preferredUnits,
+                goalStartWeight: latestEntry ? latestEntry.weight : undefined,
+                goalSetAt: new Date(),
+            },
             { new: true }
         );
 

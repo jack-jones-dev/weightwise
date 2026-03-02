@@ -13,6 +13,8 @@ export interface User {
     name: string;
     email: string;
     goalWeight?: number;
+    goalStartWeight?: number;
+    goalSetAt?: string;
     preferredUnits: 'lbs' | 'kg';
 }
 
