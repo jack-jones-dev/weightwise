@@ -65,9 +65,9 @@ export default async function Dashboard() {
                 </div>
             </div>
             <GoalProgress user={plainUser} entries={plainEntries} />
-            <WeightChart entries={plainEntries} />
+            <WeightChart entries={plainEntries} preferredUnits={plainUser.preferredUnits} />
             <WeightForm />
-            <WeightList entries={plainEntries} />
+            <WeightList entries={plainEntries} preferredUnits={plainUser.preferredUnits} />
         </main>
     );
 }

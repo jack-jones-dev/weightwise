@@ -14,9 +14,10 @@ import Button from './Button';
 
 interface WeightChartProps {
     entries: WeightEntry[];
+    preferredUnits: 'lbs' | 'kg';
 }
 
-export default function WeightChart({ entries }: WeightChartProps) {
+export default function WeightChart({ entries, preferredUnits }: WeightChartProps) {
     const [showBodyFat, setShowBodyFat] = useState(true);
     const data = entries
         .slice() //Don't need this but good practice
@@ -59,7 +60,7 @@ export default function WeightChart({ entries }: WeightChartProps) {
                             marginBottom: '4px',
                         }}
                         formatter={(value, name) => {
-                            if (name === 'weight') return [`${value} lbs`, 'Weight'];
+                            if (name === 'weight') return [`${value} ${preferredUnits}`, 'Weight'];
                             if (name === 'bodyFatPercentage') return [`${value}%`, 'Body Fat'];
                             return [value, name];
                         }}

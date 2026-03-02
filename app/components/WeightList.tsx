@@ -6,9 +6,10 @@ import Button from "./Button";
 
 interface WeightListProps {
     entries: WeightEntry[];
+    preferredUnits: 'lbs' | 'kg';
 }
 
-export default function WeightList({ entries }: WeightListProps) {
+export default function WeightList({ entries, preferredUnits }: WeightListProps) {
     const router = useRouter();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -49,7 +50,7 @@ export default function WeightList({ entries }: WeightListProps) {
                     {entries.map(entry => (
                         <li key={entry._id} className="flex justify-between items-center border-b pb-4">
                             <div>
-                                <p className="text-black text-lg">{entry.weight}lbs</p>
+                                <p className="text-black text-lg">{entry.weight} {preferredUnits}</p>
                                 {entry.bodyFatPercentage && (
                                     <p className="text-gray-500 text-sm">Body fat: {entry.bodyFatPercentage}%</p>
                                 )}

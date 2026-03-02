@@ -48,7 +48,7 @@ export default function WeightForm() {
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <Input label="Weight" name="weight" type="number" placeholder="Enter your weight" required />
-                <Input label="Body Fat Percentage" name="bodyFatPercentage" type="number" placeholder="Enter your body fat percentage (optional)" required={false} />
+                <Input label="Body Fat %" name="bodyFatPercentage" type="number" placeholder="Enter your body fat percentage (optional)" required={false} />
                 <Input label="Date" name="date" type="date" placeholder="Select date (optional)" required={false} />
                 <Button type="submit" disabled={loading} variant="primary">
                     {loading ? 'Logging weight...' : 'Log Weight'}
