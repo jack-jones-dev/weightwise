@@ -11,6 +11,7 @@ import WeightList from '@/app/components/WeightList';
 import { authOptions } from '../lib/auth';
 import LogoutButton from '@/app/components/LogoutButton';
 import GoalProgress from '../components/GoalProgress';
+import Link from 'next/link';
 
 export default async function Dashboard() {
     const session = await getServerSession(authOptions);
@@ -56,7 +57,12 @@ export default async function Dashboard() {
                         </p>
                     )}
                 </div>
-                <LogoutButton />
+                <div className="flex gap-4">
+                    <Link href="/settings" className="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300">
+                        Settings
+                    </Link>
+                    <LogoutButton />
+                </div>
             </div>
             <GoalProgress user={plainUser} entries={plainEntries} />
             <WeightChart entries={plainEntries} />

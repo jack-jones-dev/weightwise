@@ -5,7 +5,7 @@ import connectDB from '../lib/mongodb';
 import { User as UserType } from '@/app/types';
 import User from '../models/User';
 import SettingsForm from '../components/SettingsForm';
-
+import Link from 'next/link';
 
 export default async function Settings() {
     const session = await getServerSession(authOptions);
@@ -29,6 +29,9 @@ export default async function Settings() {
 
     return (
         <main className="max-w-4xl mx-auto p-8">
+            <Link href="/dashboard" className="text-blue-500 hover:underline">
+                ← Back to Dashboard
+            </Link>
             <SettingsForm user={plainUser} />
         </main>
     );
