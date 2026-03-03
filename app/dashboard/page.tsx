@@ -51,11 +51,11 @@ export default async function Dashboard() {
             <div className="flex justify-between items-center mb-8">
                 <div>
                     <h1 className="text-3xl font-bold">Welcome back, {plainUser?.name}</h1>
-                    {plainUser?.goalWeight && (
+                    {/* {plainUser?.goalWeight && (
                         <p className="text-gray-500 mt-1">
                             Goal: {plainUser.goalWeight} {plainUser.preferredUnits}
                         </p>
-                    )}
+                    )} */}
                 </div>
                 <div className="flex gap-4">
                     <Link href="/settings" className="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300">

@@ -39,7 +39,7 @@ export default function WeightChart({ entries, preferredUnits }: WeightChartProp
 
     return (
         <div className="bg-white rounded-lg p-6 shadow mb-8">
-            <h2 className="text-black text-2xl font-bold mb-4">Weight Progress</h2>
+            <h2 className="text-black text-2xl font-bold mb-8">Weight Progress</h2>
             <Button onClick={() => setShowBodyFat(!showBodyFat)} variant='secondary'>
                 {showBodyFat ? 'Hide Body Fat %' : 'Show Body Fat %'}
             </Button>
