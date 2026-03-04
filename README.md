@@ -1,4 +1,4 @@
-#Weightwise
+# Weightwise
 
 ## Features
 - Track weight and body fat over time
