@@ -3,8 +3,8 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold mb-4">Weight Tracker</h1>
-      <p className="text-gray-500 mb-8">Track your weight and reach your goals</p>
+      <h1 className="text-4xl font-bold mb-4">WeightWise</h1>
+      <p className="text-gray-500 mb-8">Track your weight and reach your goals!</p>
       <div className="flex gap-4">
         <Link
           href="/login"
