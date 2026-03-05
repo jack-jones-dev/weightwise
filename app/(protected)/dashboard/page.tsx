@@ -47,7 +47,7 @@ export default async function Dashboard() {
         <main className="max-w-4xl mx-auto p-8">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold">Welcome back, {plainUser?.name}</h1>
+                    <h1 className="text-2xl italic">Welcome back, {plainUser?.name}</h1>
                     {/* {plainUser?.goalWeight && (
                         <p className="text-gray-500 mt-1">
                             Goal: {plainUser.goalWeight} {plainUser.preferredUnits}

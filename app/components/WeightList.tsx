@@ -36,7 +36,7 @@ export default function WeightList({ entries, preferredUnits }: WeightListProps)
     }
 
     return (
-        <div className="bg-white rounded-lg p-6 shadow">
+        <div className="bg-white rounded-lg p-6 shadow border border-gray-300">
             <h2 className="text-black text-2xl font-bold mb-8">Your Weight Entries</h2>
             {error && (
                 <div className="bg-red-100 text-red-600 p-3 rounded-lg mb-4">

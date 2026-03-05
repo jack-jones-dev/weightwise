@@ -37,7 +37,7 @@ export default function WeightForm() {
     }
 
     return (
-        <div className="bg-white rounded-lg p-6 shadow mb-8">
+        <div className="bg-white rounded-lg p-6 shadow mb-8 border border-gray-300">
             <h1 className="text-black text-3xl font-bold mb-8">Log Weight</h1>
 
             {error && (
