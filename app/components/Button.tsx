@@ -3,7 +3,7 @@ interface ButtonProps {
     onClick?: () => void;
     type?: 'button' | 'submit' | 'reset';
     disabled?: boolean;
-    variant?: 'primary' | 'secondary' | 'delete';
+    variant?: 'primary' | 'secondary' | 'delete' | 'nav';
 }
 
 export default function Button({
