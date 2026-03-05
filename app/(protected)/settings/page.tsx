@@ -10,13 +10,9 @@ import Link from 'next/link';
 export default async function Settings() {
     const session = await getServerSession(authOptions);
 
-    if (!session?.user?.id) {
-        redirect('/login');
-    }
-
     await connectDB();
 
-    const user = await User.findById(session.user.id).lean<UserType>();
+    const user = await User.findById(session!.user.id).lean<UserType>();
 
     if (!user) {
         redirect('/login');

@@ -17,13 +17,9 @@ import Navbar from '@/app/components/Navbar';
 export default async function Dashboard() {
     const session = await getServerSession(authOptions);
 
-    if (!session?.user?.id) {
-        redirect('/login');
-    }
-
     await connectDB();
 
-    const entries = await Weight.find({ userId: session.user.id })
+    const entries = await Weight.find({ userId: session!.user.id })
         .sort({ date: -1 }) //Newest first
         .lean<WeightEntry[]>(); //Get plain JS objects instead of Mongo documents
 
@@ -36,7 +32,7 @@ export default async function Dashboard() {
         updatedAt: entry.updatedAt?.toString(),
     }));
 
-    const user = await User.findById(session.user.id).lean<UserType>();
+    const user = await User.findById(session!.user.id).lean<UserType>();
 
     if (!user) {
         redirect('/login');
