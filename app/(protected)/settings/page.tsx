@@ -1,10 +1,10 @@
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../lib/auth';
+import { authOptions } from '@/app/lib/auth';
 import { redirect } from 'next/navigation';
-import connectDB from '../lib/mongodb';
+import connectDB from '@/app/lib/mongodb';
 import { User as UserType } from '@/app/types';
-import User from '../models/User';
-import SettingsForm from '../components/SettingsForm';
+import User from '@/app/models/User';
+import SettingsForm from '@/app/components/SettingsForm';
 import Link from 'next/link';
 
 export default async function Settings() {
@@ -29,9 +29,6 @@ export default async function Settings() {
 
     return (
         <main className="max-w-4xl mx-auto p-8">
-            <Link href="/dashboard" className="text-blue-500 hover:underline">
-                ← Back to Dashboard
-            </Link>
             <SettingsForm user={plainUser} />
         </main>
     );
