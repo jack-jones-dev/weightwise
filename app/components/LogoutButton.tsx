@@ -4,7 +4,7 @@ import Button from './Button';
 
 export default function LogoutButton() {
     return (
-        <Button onClick={() => signOut({ callbackUrl: '/' })} variant='secondary'>
+        <Button onClick={() => signOut({ callbackUrl: '/' })} variant='nav'>
             Logout
         </Button>
     );
